@@ -14,16 +14,16 @@ public class Main {
         student.setRollNo(190322019);
         student.setAge(15);
 
+        Student student2 = null;
+
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(Student.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.persist(student);
-        transaction.commit();
+        student2 = session.get(Student.class, 190322015);
         session.close();
         sessionFactory.close();
-        System.out.println(student);
+        System.out.println(student2);
     }
 }
