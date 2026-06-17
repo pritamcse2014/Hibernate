@@ -10,18 +10,20 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     static void main(String[] args) {
         Student student = new Student();
-        student.setName("Puja");
-        student.setRollNo(190322018);
-        student.setAge(11);
-        /* System.out.println(student); */
-        Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(Student.class);
-        configuration.configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        student.setName("Sathi");
+        student.setRollNo(190322019);
+        student.setAge(15);
+
+        SessionFactory sessionFactory = new Configuration()
+                .addAnnotatedClass(Student.class)
+                .configure()
+                .buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(student);
         transaction.commit();
+        session.close();
+        sessionFactory.close();
         System.out.println(student);
     }
 }
