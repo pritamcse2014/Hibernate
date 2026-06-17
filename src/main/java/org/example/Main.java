@@ -9,19 +9,19 @@ import org.hibernate.cfg.Configuration;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main(String[] args) {
-        Student student = new Student();
-
+        Alien alien = new Alien();
+        alien.setId(101);
+        alien.setName("Alien");
+        alien.setTech("Java");
         SessionFactory sessionFactory = new Configuration()
-                .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Alien.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sessionFactory.openSession();
-        student = session.get(Student.class, 190322019);
         Transaction transaction = session.beginTransaction();
-        session.remove(student);
+        session.persist(alien);
         transaction.commit();
         session.close();
         sessionFactory.close();
-        System.out.println(student);
     }
 }
