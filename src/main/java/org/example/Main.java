@@ -10,9 +10,9 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     static void main(String[] args) {
         Student student = new Student();
-        student.setName("Pritam");
-        student.setRollNo(190322014);
-        student.setAge(18);
+        student.setName("Puja");
+        student.setRollNo(190322018);
+        student.setAge(11);
         /* System.out.println(student); */
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Student.class);
