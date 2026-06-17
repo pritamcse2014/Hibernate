@@ -10,17 +10,15 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     static void main(String[] args) {
         Student student = new Student();
-        student.setName("Shila");
-        student.setRollNo(190322019);
-        student.setAge(10);
 
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(Student.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sessionFactory.openSession();
+        student = session.get(Student.class, 190322019);
         Transaction transaction = session.beginTransaction();
-        session.merge(student);
+        session.remove(student);
         transaction.commit();
         session.close();
         sessionFactory.close();
