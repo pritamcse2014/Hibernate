@@ -39,18 +39,8 @@ public class Main {
         alien2.setName("Alien 2");
         alien2.setTech("JavaScript");
 
-        Alien alien3 = new Alien();
-        alien3.setId(103);
-        alien3.setName("Alien 3");
-        alien3.setTech("Python");
-
         alien.setLaptops(Arrays.asList(l1, l2));
-        alien2.setLaptops(Arrays.asList(l2, l3));
-        alien3.setLaptops(Arrays.asList(l1));
-
-        l1.setAliens(Arrays.asList(alien, alien3));
-        l2.setAliens(Arrays.asList(alien, alien2));
-        l3.setAliens(Arrays.asList(alien2));
+        alien2.setLaptops(Arrays.asList(l3));
 
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(Alien.class)
@@ -65,10 +55,10 @@ public class Main {
         session.persist(l3);
         session.persist(alien);
         session.persist(alien2);
-        session.persist(alien3);
         transaction.commit();
-
-        Alien alien4 = session.get(Alien.class, 102);
+        session.close();
+        Session session2 = sessionFactory.openSession();
+        Alien alien4 = session2.get(Alien.class, 101);
         System.out.println(alien4);
         session.close();
         sessionFactory.close();
