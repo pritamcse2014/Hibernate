@@ -8,6 +8,7 @@ public class Alien {
     private int id;
     private String name;
     private String tech;
+    @OneToOne
     private Laptop laptop;
 
     public int getId() {

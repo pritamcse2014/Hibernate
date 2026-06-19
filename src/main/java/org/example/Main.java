@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     static void main(String[] args) {
         Laptop l1 = new Laptop();
+        l1.setId(1);
         l1.setBrand("Lenovo");
         l1.setModel("ThinkPad");
         l1.setRam(32);
@@ -20,10 +21,12 @@ public class Main {
         alien.setLaptop(l1);
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(Alien.class)
+                .addAnnotatedClass(Laptop.class)
                 .configure()
                 .buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+        session.persist(l1);
         session.persist(alien);
         transaction.commit();
         Alien alien2 = session.get(Alien.class, 101);
