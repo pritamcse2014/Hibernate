@@ -14,11 +14,13 @@ public class Main {
         Session session = sessionFactory.openSession();
         Laptop laptop1 = session.get(Laptop.class, 2);
         System.out.println(laptop1);
-        Laptop laptop2 = session.find(Laptop.class, 2);
+//        Laptop laptop2 = session.get(Laptop.class, 2);
+//        System.out.println(laptop2);
+//        session.close();
+        Session session2 = sessionFactory.openSession();
+        Laptop laptop2 = session.get(Laptop.class, 2);
         System.out.println(laptop2);
-        Laptop laptop3 = session.byId(Laptop.class).getReference(2);
-        System.out.println(laptop2);
-        session.close();
+        session2.close();
         sessionFactory.close();
     }
 }
